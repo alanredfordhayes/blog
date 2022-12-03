@@ -1,6 +1,9 @@
 resource "aws_cognito_user_pool" "pool_1" {
   name = "alanredfordhayes_pool_1"
 
+  alias_attributes = ["email"]
+  auto_verified_attributes = ["email"]
+
   schema {
     name = "email"
     attribute_data_type = "String"
