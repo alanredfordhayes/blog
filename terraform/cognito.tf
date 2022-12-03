@@ -1,7 +1,7 @@
 resource "aws_cognito_user_pool" "pool_1" {
   name = "alanredfordhayes_pool_1"
 
-  alias_attributes = ["email"]
+  username_attributes = true
   auto_verified_attributes = ["email"]
 
   schema {
@@ -56,4 +56,9 @@ resource "aws_cognito_user_pool_client" "client" {
 
   user_pool_id = aws_cognito_user_pool.pool_1.id
   supported_identity_providers = ["COGNITO"]
+  callback_urls = ["https://localhost:8080/login"]
+  logout_urls = ["https://localhost:8080/logout"]
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_flows = ["code"]
+  allowed_oauth_scopes = ["email", "openid"]
 }
