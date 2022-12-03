@@ -55,4 +55,5 @@ resource "aws_cognito_user_pool_client" "client" {
   name = "alanredfordhayes_app_client_1"
 
   user_pool_id = aws_cognito_user_pool.pool_1.id
+  supported_identity_providers = ["COGNITO"]
 }
