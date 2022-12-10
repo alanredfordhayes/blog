@@ -13,5 +13,7 @@ locals {
     aws_api_gateway_rest_api__api_1__name = "${local.project_name}__api_1"
     aws_api_gateway_rest_api__api_1__endpoint_configuration = ["REGIONAL"]
 
-    #aws_api_gateway_resource
+    #aws_api_gateway_method
+    aws_api_gateway_method__post__authorization = "NONE"
+    aws_api_gateway_method__post__http_method = "POST"
 }
