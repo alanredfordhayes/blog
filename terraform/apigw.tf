@@ -11,8 +11,8 @@ resource "aws_api_gateway_resource" "resources" {
 }
 
 resource "aws_api_gateway_method" "post" {
-  authorization = local.aws_api_gateway_method_authorization
-  http_method   = local.aws_api_gateway_method_http_method
-  resource_id   = aws_api_gateway_resource.resources.id
+  authorization = local.aws_api_gateway_method__post__authorization
+  http_method   = local.aws_api_gateway_method__post__http_method
+  resource_id   = aws_api_gateway_resource.resources[each.key]
   rest_api_id   = aws_api_gateway_rest_api.api_1.id
 }
