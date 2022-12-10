@@ -11,7 +11,7 @@ resource "aws_api_gateway_resource" "resources" {
 }
 
 resource "aws_api_gateway_method" "post" {
-    for_each = toset([for resource in aws_api_gateway_resource: resource.path_part])
+    for_each = toset([for resource in aws_api_gateway_resource.resources: resource.path_part])
     authorization = local.aws_api_gateway_method__post__authorization
     http_method   = local.aws_api_gateway_method__post__http_method
     resource_id   = aws_api_gateway_resource.resources[each.key].id
