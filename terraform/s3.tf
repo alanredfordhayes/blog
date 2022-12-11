@@ -1,8 +1,8 @@
 data "archive_file" "files" {
     for_each = toset(local.site_pages)
     type = local.archive_file__files__type
-    source_dir  = format("${path.module}/%s", [each.value])
-    output_path = format("${path.module}/%s.zip", [each.value])
+    source_dir  = format("$s/%s", path.module, [each.key])
+    output_path = format("$s/%s.zip", path.module, [each.key])
 
 }
 
