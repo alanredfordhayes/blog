@@ -1,8 +1,8 @@
 data "archive_file" "files" {
     for_each = toset(local.site_pages)
     type = local.archive_file__files__type
-    source_dir  = "${path.module}/${each.key}"
-    output_path = "${path.module}/${each.key}.zip"
+    source_dir  = "${path.module}/terraform/${each.key}"
+    output_path = "${path.module}/terraform/${each.key}.zip"
 
 }
 
