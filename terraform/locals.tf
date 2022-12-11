@@ -20,4 +20,7 @@ locals {
     #aws_lambda_function
     aws_lambda_function__lambdas__function_name = toset(formatlist("project_name_%s", local.site_pages))
 
+
+    #archive_file
+    archive_file__files__type = "zip"
 }
