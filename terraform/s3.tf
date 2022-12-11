@@ -3,7 +3,6 @@ data "archive_file" "files" {
     type = local.archive_file__files__type
     source_dir  = "${path.module}/${each.key}"
     output_path = "${path.module}/${each.key}.zip"
-
 }
 
 resource "aws_s3_bucket" "bucket" {
@@ -11,3 +10,6 @@ resource "aws_s3_bucket" "bucket" {
     force_destroy = true
 }
 
+output "archive" {
+    value = archive_file.files.output_path
+}
