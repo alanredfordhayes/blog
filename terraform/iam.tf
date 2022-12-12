@@ -10,7 +10,6 @@ resource "aws_iam_role_policy_attachment" "role_attachments" {
 
 resource "aws_iam_policy" "polices" {
     name = "${local.project_name}_Policy"
-    description = local.aws_iam_policy__policies__name
     policy = local.aws_iam_policy__policies__policy
 }
 
