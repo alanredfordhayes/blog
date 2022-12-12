@@ -8,12 +8,14 @@ resource "aws_iam_role_policy_attachment" "role_attachments" {
     policy_arn = local.aws_iam_role_policy_attachment__policy_attachments__policy_arn
 }
 
-resource "aws_iam_policy" "polices" {
+resource "aws_iam_policy" "policy" {
     name = "${local.project_name}_Policy"
+    path = local.aws_iam_policy_path
     policy = local.aws_iam_policy__policies__policy
 }
 
 resource "aws_iam_role_policy_attachment" "policy_attachments" {
-    role       = aws_iam_role.roles.name
-    policy_arn = aws_iam_policy.polices.arn
+    name = "${local.project_name}_Policy"
+    roles = [aws_iam_role.roles.name]
+    policy_arn = aws_iam_policy.policy.arn
 }

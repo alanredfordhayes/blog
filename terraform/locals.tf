@@ -44,6 +44,7 @@ locals {
     )
 
     aws_iam_role_policy_attachment__policy_attachments__policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+    aws_iam_policy_path = "/"
     aws_iam_policy__policies__policy = jsonencode(
         {
           Version = "2012-10-17"
