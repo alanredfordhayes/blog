@@ -52,7 +52,7 @@ resource "aws_s3_bucket_policy" "site" {
   policy = local.aws_iam_policy__site__policy
 }
 
-resource "aws_s3_object" "objects" {
+resource "aws_s3_object" "site" {
     for_each = fileset(path.module, "site/*")
     bucket = aws_s3_bucket.site.id
     key    = each.key
