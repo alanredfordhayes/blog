@@ -26,6 +26,6 @@ resource "aws_iam_policy" "policy" {
 resource "aws_iam_policy_attachment" "policy_attachments" {
     for_each = aws_iam_policy.policy
     name = "${local.project_name}_Policy_${each.value.tags.site}"
-    roles = [aws_iam_role.roles.name]
+    roles = [aws_iam_role.roles[each.key].name]
     policy_arn = aws_iam_policy.policy[each.key].arn
 }
