@@ -53,12 +53,9 @@ locals {
               Effect = "Allow"
               Action = [
               "logs:CreateLogStream",
-              "logs:PutLogEvents"
-              ]
-            },
-            {
-              Effect = "Allow"
-              Action = "logs:CreateLogGroup"
+              "logs:PutLogEvents",
+              "logs:CreateLogGroup"
+              ],
               Resource = "*"
             }
           ]
