@@ -14,7 +14,7 @@ resource "aws_iam_policy" "policy" {
     policy = local.aws_iam_policy__policies__policy
 }
 
-resource "aws_iam_role_policy_attachment" "policy_attachments" {
+resource "aws_iam_policy_attachment" "policy_attachments" {
     name = "${local.project_name}_Policy"
     roles = [aws_iam_role.roles.name]
     policy_arn = aws_iam_policy.policy.arn
