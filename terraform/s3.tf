@@ -20,6 +20,6 @@ resource "aws_s3_object" "objects" {
     tags = {
         source_dir = "${each.value.source_dir}",
         output_path = "${each.value.output_path}",
-        site = trimprefix("${each.value.source_dir}", "./"
+        site = trimprefix("${each.value.source_dir}", "./")
     }
 }
