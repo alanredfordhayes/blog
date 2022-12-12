@@ -6,7 +6,7 @@ resource "aws_lambda_function" "lambdas" {
     publish = true
 
     s3_bucket = aws_s3_bucket.bucket.id
-    s3_key    = each.value.key
+    s3_key    = trimprefix("${each.value.source_dir}", "./")
     source_code_hash = data.archive_file.files[each.value.tags.site].output_base64sha256
     
     runtime = local.aws_lambda_function__lambdas__runtime
