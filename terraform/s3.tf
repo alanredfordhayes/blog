@@ -32,5 +32,9 @@ resource "aws_s3_bucket" "site" {
 }
 
 resource "aws_s3_bucket_website_configuration" "example" {
-  bucket = aws_s3_bucket.site.bucket
+    bucket = aws_s3_bucket.site.bucket
+
+    index_document {
+        suffix = "index.html"
+    }
 }
