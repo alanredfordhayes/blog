@@ -30,3 +30,7 @@ resource "aws_s3_bucket" "site" {
     bucket_prefix = local.aws_s3_bucket__site__bucket_prefix
     force_destroy = true
 }
+
+resource "aws_s3_bucket_website_configuration" "example" {
+  bucket = aws_s3_bucket.site.bucket
+}
