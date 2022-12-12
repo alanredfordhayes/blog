@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "site" {
     force_destroy = true
 }
 
-resource "aws_s3_bucket_website_configuration" "example" {
+resource "aws_s3_bucket_website_configuration" "site" {
     bucket = aws_s3_bucket.site.bucket
 
     index_document {
@@ -46,4 +46,9 @@ resource "aws_s3_bucket_public_access_block" "site" {
   block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_policy" "site" {
+  bucket = aws_s3_bucket.site.id
+  policy = local.aws_iam_policy__site__policy
 }
