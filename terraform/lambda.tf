@@ -3,6 +3,7 @@ resource "aws_lambda_function" "lambdas" {
 
     function_name = "${local.project_name}/${each.value.key}"
     description = "${local.project_name}/${each.value.key}"
+    publish = true
 
     s3_bucket = aws_s3_bucket.bucket.id
     s3_key    = each.value.key
