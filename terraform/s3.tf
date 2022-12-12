@@ -13,7 +13,6 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_object" "objects" {
     for_each = data.archive_file.files
     bucket = aws_s3_bucket.bucket.id
-
     key    = each.value.output_path
     source = each.value.output_path
     etag = filemd5(each.value.output_path)
@@ -51,4 +50,11 @@ resource "aws_s3_bucket_public_access_block" "site" {
 resource "aws_s3_bucket_policy" "site" {
   bucket = aws_s3_bucket.site.id
   policy = local.aws_iam_policy__site__policy
+}
+
+resource "aws_s3_object" "objects" {
+    for_each = fileset(path.module, "site/*")
+    bucket = aws_s3_bucket.site.id
+    key    = each.key
+    source = each.key
 }
