@@ -5,11 +5,11 @@ resource "random_string" "random" {
 }
 
 locals {
-    #site_pages
+    #site
+    project_name = "alanredfordhayes-${random_string.random.result}"
     site_pages = ["index", "register", "login", "logout", "dashboard"]
 
-    #aws_api_gateway_rest_api
-    project_name = "alanredfordhayes-${random_string.random.result}" 
+    #aws_api_gateway_rest_api 
     aws_api_gateway_rest_api__api_1__name = "${local.project_name}__api_1"
     aws_api_gateway_rest_api__api_1__endpoint_configuration = ["REGIONAL"]
 
@@ -23,10 +23,12 @@ locals {
     #archive_file
     archive_file__files__type = "zip"
 
+    #aws_s3_bucket
+    aws_s3_bucket__site__bucket_prefix = "${local.project_name}-website"
+
     #aws_lambda_function
     aws_lambda_function__lambdas__runtime = "python3.9"
     aws_lambda_function__lambdas__handler = "lambda_function.lambda_handler"
-
     aws_iam_role__roles__asume_role_policy = jsonencode(
         {
             Version = "2012-10-17"
