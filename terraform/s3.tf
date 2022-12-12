@@ -10,11 +10,12 @@ resource "aws_s3_bucket" "bucket" {
     force_destroy = true
 }
 
-resource "aws_s3_object" "event_api" {
+resource "aws_s3_object" "objects" {
     for_each = data.archive_file.files
     bucket = aws_s3_bucket.bucket.id
 
     key    = each.value.output_path
     source = each.value.output_path
     etag = filemd5(each.value.output_path)
+    tags = each.value.source_dir
 }
