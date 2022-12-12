@@ -22,5 +22,6 @@ resource "aws_s3_object" "objects" {
         output_path = "${each.value.output_path}",
         site = trimprefix("${each.value.source_dir}", "./")
         key = "${each.key}"
+        s3_key = trimprefix("${each.value.output_path}", "./")
     }
 }
