@@ -6,7 +6,7 @@ resource "aws_iam_role" "roles" {
     }
 }
 
-resource "aws_iam_role_policy_attachment" "policy_attachments" {
+resource "aws_iam_role_policy_attachment" "role_attachments" {
     role       = aws_iam_role.roles.name
     policy_arn = local.aws_iam_role_policy_attachment__policy_attachments__policy_arn
 }
@@ -19,5 +19,5 @@ resource "aws_iam_policy" "polices" {
 
 resource "aws_iam_role_policy_attachment" "policy_attachments" {
     role       = aws_iam_role.roles.name
-    policy_arn = local.aws_iam_role_policy_attachment__policy_attachments__policy_arn
+    policy_arn = aws_iam_policy.polices.arn
 }
