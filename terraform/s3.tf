@@ -17,5 +17,8 @@ resource "aws_s3_object" "objects" {
     key    = each.value.output_path
     source = each.value.output_path
     etag = filemd5(each.value.output_path)
-    tags = each.value.source_dir
+    tags = {
+        source_dir = "${each.value.source_dir}",
+        output_path = "${each.value.output_path}"
+    }
 }
