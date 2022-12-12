@@ -6,7 +6,7 @@ resource "aws_lambda_function" "lambdas" {
 
     s3_bucket = aws_s3_bucket.bucket.id
     s3_key    = each.value.key
-    source_code_hash = data.archive_file.event_api.output_base64sha256
+    source_code_hash = data.archive_file.files.output_base64sha256
     
     runtime = local.aws_lambda_function__lambdas__runtime
     handler = local.aws_lambda_function__lambdas__handler
