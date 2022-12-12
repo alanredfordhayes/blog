@@ -19,6 +19,7 @@ resource "aws_s3_object" "objects" {
     etag = filemd5(each.value.output_path)
     tags = {
         source_dir = "${each.value.source_dir}",
-        output_path = "${each.value.output_path}"
+        output_path = "${each.value.output_path}",
+        site = trimprefix("${each.value.source_dir}", "./"
     }
 }
