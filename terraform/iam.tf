@@ -1,9 +1,6 @@
 resource "aws_iam_role" "roles" {
     name = "${local.project_name}_Role"
     assume_role_policy = local.aws_iam_role__roles__asume_role_policy
-    tags = {
-        site = each.key
-    }
 }
 
 resource "aws_iam_role_policy_attachment" "role_attachments" {
