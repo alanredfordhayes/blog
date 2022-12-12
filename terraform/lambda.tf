@@ -1,8 +1,8 @@
 resource "aws_lambda_function" "lambdas" {
     for_each = aws_s3_object.objects
 
-    function_name = "${local.project_name}/${each.value.tags.site}"
-    description = "${local.project_name}/${each.value.tags.site}"
+    function_name = "${local.project_name}-${each.value.tags.site}"
+    description = "${local.project_name}-${each.value.tags.site}"
     publish = true
 
     s3_bucket = aws_s3_bucket.bucket.id
