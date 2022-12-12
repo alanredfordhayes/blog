@@ -13,3 +13,12 @@ resource "aws_s3_bucket" "bucket" {
 output "archive" {
     value = archive_file.files.output_path
 }
+
+resource "aws_s3_object" "event_api" {
+    for_each = data.archive_file.files
+    bucket = aws_s3_bucket.bucket.id
+
+    key    = each.value.output_path
+    source = each.value.output_path
+    etag = filemd5(each.value.output_path)
+}
