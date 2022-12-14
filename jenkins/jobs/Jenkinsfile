@@ -1,6 +1,9 @@
 pipeline {
   agent {
-    docker { image 'redhat/ubi8-minimal:latest' }
+    docker { 
+        image 'redhat/ubi8-minimal:latest'
+        args '--privileged'       
+    }
   }
   stages {
     stage('Test') {
