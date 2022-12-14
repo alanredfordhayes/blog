@@ -1,0 +1,14 @@
+FROM jenkins/jenkins:lts-jdk11
+
+# https://github.com/jenkinsci/docker/blob/master/README.md#usage-1
+COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
+
+RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
+
+COPY jenkins-casc.yaml /usr/local/jenkins-casc.yaml
+
+ENV CASC_JENKINS_CONFIG /usr/local/jenkins-casc.yaml
+
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+ENV JENKINS_JAVA_OPTIONS=-Djava.awt.headless=true

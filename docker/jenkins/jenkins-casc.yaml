@@ -1,0 +1,32 @@
+# jenkins-casc.yaml
+
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        # create a user called admin
+        - id: "admin"
+          password: "admin"
+  authorizationStrategy: loggedInUsersCanDoAnything
+unclassified:
+  location:
+    url: http://${SERVER_IP}:8080/
+jobs:
+  - script: >
+      pipelineJob('Download to S3') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {url('https://github.com/alanredfordhayes/blog.git')}
+                branch('*/master')
+                scriptPath('jenkins/jobs/Jenkinsfile')
+              }
+            }
+            lightweight()
+          }
+        }
+
+      }
