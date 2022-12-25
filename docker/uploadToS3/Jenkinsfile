@@ -1,7 +1,7 @@
 pipeline {
   agent none
   stages {
-    stage('Test') {
+    stage('upload-to-s3') {
       agent {
         docker { 
           image 'alanredfordhayes/upload-to-s3:latest'
@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-        sh 'python3 /root/dev/uploadToS3.py  --filename filename --bucket bucket --objectname objectname'
+        sh 'python3 /root/dev/uploadToS3.py  --path site --bucket bucket'
       }
     }
   }
