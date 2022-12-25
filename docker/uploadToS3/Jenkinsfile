@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-        sh 'python3 /root/dev/uploadToS3.py  --path site --bucket bucket'
+        sh "python3 /root/dev/uploadToS3.py  --path site --bucket $bucket"
       }
     }
   }
