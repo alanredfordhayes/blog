@@ -5,9 +5,8 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser(prog = 'Upload to S3',description = 'Upoads all files in the dir to s3')
-parser.add_argument('-f', '--filename')
+parser.add_argument('-f', '--path')
 parser.add_argument('-b', '--bucket')
-parser.add_argument('-o', '--objectname')
 args = parser.parse_args()
 
 def upload_file(file_name, bucket, object_name=None):
@@ -19,4 +18,11 @@ def upload_file(file_name, bucket, object_name=None):
     except ClientError as e: logging.error(e); return False
     return True
 
-print(args.filename, args.bucket, args.objectname)
+def uploadDirectory(path, bucketname):
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                print(os.path.join(root,file), args.bucket, file)
+                # upload_file(os.path.join(root,file),bucketname,file)
+                
+                
+uploadDirectory(args.path, args.bucket)
