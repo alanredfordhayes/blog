@@ -21,8 +21,8 @@ def upload_file(file_name, bucket, object_name=None):
 def uploadDirectory(path, bucketname):
         for root, dirs, files in os.walk(path):
             for file in files:
-                print(os.path.join(root,file), args.bucket, file)
-                # upload_file(os.path.join(root,file),bucketname,file)
+                print(os.path.join(root,file), bucketname, file)
+                upload_file(os.path.join(root,file), bucketname, file)
                 
                 
 uploadDirectory(args.path, args.bucket)
