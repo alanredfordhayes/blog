@@ -4,6 +4,8 @@ LABEL version=0.1
 
 COPY requirements.txt /root/dev/requirements.txt
 
+COPY uploadToS3.py /root/dev/uploadToS3.py
+
 WORKDIR /root/dev
 
 RUN apt-get update && \

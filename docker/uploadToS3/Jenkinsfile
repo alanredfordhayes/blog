@@ -1,0 +1,18 @@
+pipeline {
+  agent {
+    any
+  }
+  stages {
+    stage('Test') {
+      agent {
+        docker { 
+          image 'alanredfordhayes/upload-to-s3:latest'
+          args '--privileged -v $HOME/.aws:/root/.aws'       
+            }
+      }
+      steps {
+        sh 'python3 /root/dev/uploadToS3.py  --filename filename --bucket bucket --objectname objectname'
+      }
+    }
+  }
+}
