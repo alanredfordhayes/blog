@@ -16,6 +16,7 @@ unclassified:
 jobs:
   - script: >
       pipelineJob('Download to S3') {
+        description('A job to download a git repository. Then upload files to Amazon S3')
         definition {
           cpsScm {
             scm {
@@ -28,5 +29,4 @@ jobs:
             lightweight()
           }
         }
-
       }

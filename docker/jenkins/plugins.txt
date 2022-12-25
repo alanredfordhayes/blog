@@ -1,4 +1,5 @@
 # plugins.txt
+# A set of plugings to get configuration as code with docker running.
 
 configuration-as-code:latest
 ant:latest

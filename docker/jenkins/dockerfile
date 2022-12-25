@@ -1,14 +1,25 @@
 FROM jenkins/jenkins:lts-jdk11
 
+USER root
+
+# Installing Docker Daemon Internally
+RUN apt-get update && \
+    apt-get -qy full-upgrade && \
+    apt-get install -qy curl && \
+    curl -sSL https://get.docker.com/ | sh
+
+# Commands to correctly map the jenkins plugins
 # https://github.com/jenkinsci/docker/blob/master/README.md#usage-1
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
 
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
+# Configure Jenkins Configuration as Code (CasC)
 COPY jenkins-casc.yaml /usr/local/jenkins-casc.yaml
 
 ENV CASC_JENKINS_CONFIG /usr/local/jenkins-casc.yaml
 
+# Skipping the setup wizard and making jenkins aware that it is headless
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 ENV JENKINS_JAVA_OPTIONS=-Djava.awt.headless=true
