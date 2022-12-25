@@ -16,6 +16,9 @@ unclassified:
 jobs:
   - script: >
       pipelineJob('upload-to-s3') {
+        parameters {
+          stringParam('bucket', '', 's3 Bucket to host static site.')
+        }
         description('A job to download a git repository. Then upload files to Amazon S3')
         definition {
           cpsScm {
