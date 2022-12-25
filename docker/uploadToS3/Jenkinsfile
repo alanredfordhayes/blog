@@ -5,7 +5,7 @@ pipeline {
       agent {
         docker { 
           image 'alanredfordhayes/upload-to-s3:latest'
-          args "--privileged -v $HOME/.personal_aws/credentials:/root/.aws/credentials:ro"
+          args "--privileged -v /root/.aws/credentials:/root/.aws/credentials:ro"
         }
       }
       steps {
